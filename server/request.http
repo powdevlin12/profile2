@@ -1,0 +1,43 @@
+PUT http://localhost:5000/api/projects/620155ef3b6e504a1eb20caf
+Content-Type: application/json
+
+{
+    "name":"Quản Lý Tín Chỉ Sinh Viên",
+    "description":"Là đồ án kì 2 năm 2 của trường PTITHCM", 
+    "language":"C++",
+    "link":"https://github.com/tranthudat2k1/doan-ctdl-qlsv", 
+    "img" :"https://github.com/tranthudat2k1/doan-ctdl-qlsv/blob/main/img/demo1.jpg"
+}
+
+###
+
+GET http://localhost:5000/api/accounts
+
+###
+
+GET http://localhost:5000/api/contacts
+
+###
+
+POST http://localhost:5000/api/projects
+Content-Type: application/json
+
+{ 
+    "name":"Game nhập chữ.",
+    "description":"Chương trình random hiện chữ, người chơi gõ đúng sẽ có điểm", 
+    "language":"ReactJS",
+    "link":"https://github.com/tranthudat2k1/typing-game-reactjs", 
+    "img" :"https://github.com/tranthudat2k1/typing-game-reactjs/raw/main/intro.jpg"
+}
+
+###
+
+GET http://localhost:5000/api/projects
+
+###
+
+DELETE http://localhost:5000/api/projects/62014e80d258a2b60cb093d8
+
+###
+
+GET http://localhost:5000/api/projects/62025263171ed356fdc7767f

@@ -1,0 +1,22 @@
+.account {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.account__img img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.account__img {
+    width: 150px;
+    height: 150px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.account__info {}
+
+.account__item {}

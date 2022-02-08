@@ -1,0 +1,10 @@
+.contact {
+    margin-top: 40px;
+    margin-left: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.contact__list {}
+
+.contact__item {}

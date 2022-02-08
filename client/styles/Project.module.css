@@ -1,0 +1,90 @@
+.project__container {
+    padding: 0 40px;
+}
+
+.project__header {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.project__list {}
+
+.project__list li {
+    padding: 10px 0;
+}
+
+.project__name {
+    display: inline-block;
+    width: 400px;
+    margin-right: 40px;
+    text-decoration: none;
+}
+
+.project__update {
+    margin-right: 40px;
+    background-color: rgb(99, 166, 187);
+}
+
+.project__delete {
+    background-color: rgb(173, 121, 121);
+}
+
+.project__list button {
+    border: none;
+    outline: none;
+    width: 60px;
+    height: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+.project_cr_name {
+    text-align: center;
+}
+
+.project_cr_form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.project_cr_label {
+    display: block;
+}
+
+.project_cr_input {
+    display: block;
+}
+
+.project_cr_submit {
+    background-color: rgb(118, 189, 218);
+    outline: none;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    height: 40px;
+    margin-top: 30px;
+}
+
+.project_des {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.project_des__name {
+    text-align: center;
+}
+
+.project_des__item {
+    margin-left: 40px;
+}
+
+.project_des img {
+    width: 80vw;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
