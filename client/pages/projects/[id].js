@@ -14,6 +14,7 @@ const Project = () => {
       .then(res => {
           console.log(res.data)
         const {project} = res.data;
+        console.log(project)
         setProjects({ project });
       })
       .catch(error => console.log(error));

@@ -12,7 +12,7 @@ const Update = () => {
     link: "",
     img: "",
   });
-  const [projects, setProjects] = useState([]);
+  const [project, setProject] = useState([]);
   let { name, description, language, link, img } = newProject;
   useEffect(() => {
     async function getData() {
@@ -21,7 +21,8 @@ const Update = () => {
         .get(url)
         .then((res) => {
           const { project } = res.data;
-          setProjects({ project });
+          setProject( project );
+          console.log(project[0].name)
         })
         .catch((error) => console.log(error));
     }
@@ -50,7 +51,7 @@ const Update = () => {
   return (
     <Layout>
       <h1 className={styles.project_cr_name}>Update Project</h1>
-      {projects['project'] ? (
+      {project[0] ? (
         <form className={styles.project_cr_form} onSubmit={onSubmit}>
           <label className={styles.project_cr_label} htmlFor="name">Name</label>
           <input
@@ -60,7 +61,7 @@ const Update = () => {
             name="name"
             onChange={onChangeNewProjectForm}
             value={name}
-            placeholder={projects['project'][0].name}
+            placeholder={project[0].name}
           />
           <label htmlFor="desc">Description</label>
           <input
@@ -70,7 +71,7 @@ const Update = () => {
             name="description"
             onChange={onChangeNewProjectForm}
             value={description}
-            placeholder={projects['project'][0].description}
+            placeholder={project[0].description}
           />
           <label htmlFor="language">Language</label>
           <input
@@ -80,7 +81,7 @@ const Update = () => {
             name="language"
             onChange={onChangeNewProjectForm}
             value={language}
-            placeholder={projects['project'][0].language}
+            placeholder={project[0].language}
 
           />
           <label htmlFor="link">Link github</label>
@@ -91,7 +92,7 @@ const Update = () => {
             name="link"
             onChange={onChangeNewProjectForm}
             value={link}
-            placeholder={projects['project'][0].link}
+            placeholder={project[0].link}
 
 />
           <label htmlFor="img">Link image</label>
@@ -102,7 +103,7 @@ const Update = () => {
             name="img"
             onChange={onChangeNewProjectForm}
             value={img}
-            placeholder={projects['project'][0].img}
+            placeholder={project[0].img}
 
 />
           <button className={styles.project_cr_submit} type="submit">Update</button>
