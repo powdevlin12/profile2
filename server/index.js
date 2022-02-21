@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const accountRouter = require('./routes/account')
 const contactRouter = require('./routes/contact')
 const projectRouter = require('./routes/project')
+const giftRouter = require('./routes/lucky')
 const app = express()
 const port = 5000
 
@@ -26,7 +27,7 @@ connectDB()
 app.use('/api/accounts', accountRouter);
 app.use('/api/contacts', contactRouter);
 app.use('/api/projects', projectRouter);
-
+app.use('/api/gifts', giftRouter);
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })

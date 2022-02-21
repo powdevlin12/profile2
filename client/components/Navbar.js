@@ -14,6 +14,9 @@ const NavbarMenu = () => {
         <Link href="/contact">
             <a className={styles.navbar_link_item}>Contact</a>
         </Link>
+        <Link href="/snip-lucky">
+            <a className={styles.navbar_link_item}>Spin Gift</a>
+        </Link>
     </div>
   </div>;
 };

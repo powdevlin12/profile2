@@ -1,3 +1,23 @@
+POST http://localhost:5000/api/gifts/
+Content-Type: application/json
+
+{
+    "name":"Chúc bạn may mắn lần sau !",
+    "description":"Lần sau quay lại có lẽ bạn sẽ may mắn hơn đó !",
+    "percentWin":90
+}
+
+###
+POST http://localhost:5000/api/gifts/users
+Content-Type: application/json
+
+{
+    "name":"Văn Tố Hữu",
+    "email":"huuvt@ezin.vn",
+    "phone":"0973138217"
+} 
+
+###
 PUT http://localhost:5000/api/projects/620155ef3b6e504a1eb20caf
 Content-Type: application/json
 
