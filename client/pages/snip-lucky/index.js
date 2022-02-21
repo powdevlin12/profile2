@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import styles from "../../styles/SnipLucky.module.css";
 import axios from "axios";
@@ -8,11 +8,6 @@ const SnipLucky = () => {
   const [rotateStatus, setRotateStatus] = useState(`${styles.circle}`);
   const startRotation = () => {
     setRotateStatus(`${styles.circle} ${styles.start_rotate}`);
-    setTimeout(() => {
-      setRotateStatus(
-        `${styles.circle} ${styles.start_rotate} ${styles.stop_rotate}`
-      );
-    }, Math.floor(Math.random() * 7000) + 1000);
   };
   const [isDisplay, setIsDisplay] = useState(false);
   const [info, setInfo] = useState({
@@ -24,19 +19,50 @@ const SnipLucky = () => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   };
   const [giftData, setGiftData] = useState();
+  const [count, setCount] = useState(true);
+  const [reload,setReload]=useState([]);
+  useEffect(() => {
+    const getCount = async () => {
+      try {
+        let response = await axios.get(
+          `http://localhost:5000/api/gifts/${info.phone}/count`
+        );
+        setCount(response.data.success);
+        console.log(count);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCount();
+  });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/gifts/users",
-        info
-      );
-      setGiftData(response.data.gift);
-      clickToOff();
-      console.log(response.data);
-      startRotation();
-    } catch (error) {
-      console.log(error);
+    setReload([...reload,reload.push(1)]);
+    if (!count) {
+      alert("Bạn đã quay đủ 5 lần, quay lại vào ngày mai !");
+      return;
+    }else
+    {
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/api/gifts/users",
+          info
+        );
+        setGiftData(response.data.gift);
+        console.log(response.data);
+        startRotation();
+        const time = Math.floor(Math.random() * 7000) + 1000;
+        setTimeout(() => {
+          setRotateStatus(
+            `${styles.circle} ${styles.start_rotate} ${styles.stop_rotate}`
+          );
+        }, time);
+        setTimeout(() => {
+          clickToOff();
+        }, time + 500);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   const clickToOff = () => {
@@ -44,7 +70,12 @@ const SnipLucky = () => {
   };
   return (
     <Layout>
-      {isDisplay && <TableNotify clickToOff={clickToOff} giftData={giftData ? giftData : " "}/>}
+      {isDisplay && (
+        <TableNotify
+          clickToOff={clickToOff}
+          giftData={giftData ? giftData : " "}
+        />
+      )}
       <div className={styles.container}>
         <form
           className={styles.form_user}
@@ -61,11 +92,8 @@ const SnipLucky = () => {
             Quay Thưởng
           </button>
           <Link href={`/snip-lucky/history/${info.phone}`}>
-            <button className={styles.spin_button}>
-              Xem Lịch Sử
-            </button>
+            <button className={styles.spin_button}>Xem Lịch Sử</button>
           </Link>
-          
         </form>
         <div className={styles.container_snip}>
           <div className={styles.arrow}></div>

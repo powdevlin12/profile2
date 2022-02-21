@@ -46,7 +46,7 @@ const History = () => {
               return (
                 <tr className={styles.tabletr}>
                   <td>{item.createAt}</td>
-                  <td>{item.gift}</td>
+                  <td>{item.gift.description}</td>
                 </tr>
               );
             })
