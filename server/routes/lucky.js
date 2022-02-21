@@ -48,12 +48,14 @@ router.post("/users", async (req, res) => {
 });
 
 //get all gift of user
-//GET localhost:5000/api/gifts/:id
+//GET localhost:5000/api/gifts/:phone
 router.get("/:phone", async(req, res) => {
   const { phone } = req.params;
   try {
     const list =await ListSpin.find({user:phone})
-    return res.status(200).json({success:true,message:"Lay danh sach trung thuong thanh cong",list})
+    const user = await User.findOne({phone:phone})
+    console.log(user)
+    return res.status(200).json({success:true,message:"Lay danh sach trung thuong thanh cong",list,user})
   } catch (error) {
     console.log(error)
     return res.status(400).json({success:true,message:"GET HISTORY FALUARE"})

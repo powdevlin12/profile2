@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import styles from "../../styles/SnipLucky.module.css";
 import axios from "axios";
 import TableNotify from "../../components/TableNotify";
+import Link from "next/link";
 const SnipLucky = () => {
   const [rotateStatus, setRotateStatus] = useState(`${styles.circle}`);
   const startRotation = () => {
@@ -59,9 +60,12 @@ const SnipLucky = () => {
           <button type="submit" className={styles.spin_button}>
             Quay Thưởng
           </button>
-          <button className={styles.spin_button}>
-            Xem Lịch Sử
-          </button>
+          <Link href={`/snip-lucky/history/${info.phone}`}>
+            <button className={styles.spin_button}>
+              Xem Lịch Sử
+            </button>
+          </Link>
+          
         </form>
         <div className={styles.container_snip}>
           <div className={styles.arrow}></div>
