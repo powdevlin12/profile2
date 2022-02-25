@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../../components/Layout";
 import styles from "../../../styles/SnipLucky.module.css";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import axios from "axios";
 const History = () => {
   const router = useRouter();

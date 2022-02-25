@@ -12,5 +12,7 @@ module.exports = {
         } else {
             return gifts.filter(gift => gift.percentWin === 5)
         }
-    }
+    },
+
+
 }

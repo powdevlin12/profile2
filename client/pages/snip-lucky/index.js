@@ -4,6 +4,7 @@ import styles from "../../styles/SnipLucky.module.css";
 import axios from "axios";
 import TableNotify from "../../components/TableNotify";
 import Link from "next/link";
+import History from "../../components/History";
 const SnipLucky = () => {
   const [rotateStatus, setRotateStatus] = useState(`${styles.circle}`);
   const startRotation = () => {
@@ -20,7 +21,8 @@ const SnipLucky = () => {
   };
   const [giftData, setGiftData] = useState();
   const [count, setCount] = useState(true);
-  const [reload,setReload]=useState([]);
+  const [reload, setReload] = useState([]);
+
   useEffect(() => {
     const getCount = async () => {
       try {
@@ -37,12 +39,11 @@ const SnipLucky = () => {
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setReload([...reload,reload.push(1)]);
+    setReload([...reload, reload.push(1)]);
     if (!count) {
       alert("Bạn đã quay đủ 5 lần, quay lại vào ngày mai !");
       return;
-    }else
-    {
+    } else {
       try {
         const response = await axios.post(
           "http://localhost:5000/api/gifts/users",
@@ -68,6 +69,12 @@ const SnipLucky = () => {
   const clickToOff = () => {
     setIsDisplay(!isDisplay);
   };
+  const [isHistory, setIsHistory] = useState(false);
+  const turnOffHistory = () =>
+  {
+    console.log('click')
+    setIsHistory(false)
+  }
   return (
     <Layout>
       {isDisplay && (
@@ -83,17 +90,23 @@ const SnipLucky = () => {
           onSubmit={handleSubmit}
         >
           <label htmlFor="name">Nhập họ và tên </label>
-          <input type="text" name="name" onChange={handleChangeInput} />
+          <input type="text" name="name" onChange={handleChangeInput}/>
           <label htmlFor="email">Email</label>
           <input type="text" name="email" onChange={handleChangeInput} />
           <label htmlFor="phone">Số điện thoại </label>
-          <input type="text" name="phone" onChange={handleChangeInput} />
+          <input type="text" name="phone" onChange={handleChangeInput} required/>
           <button type="submit" className={styles.spin_button}>
             Quay Thưởng
           </button>
-          <Link href={`/snip-lucky/history/${info.phone}`}>
-            <button className={styles.spin_button}>Xem Lịch Sử</button>
-          </Link>
+          {/* <Link href={`/snip-lucky/history/${info.phone}`}>
+            <button className={styles.spin_button} phone={info.phone}>Xem Lịch Sử</button>
+          </Link> */}
+          <button type="button"
+            className={styles.spin_button}
+            onClick={() => setIsHistory(true)}
+          >
+            Xem Lịch Sử
+          </button>
         </form>
         <div className={styles.container_snip}>
           <div className={styles.arrow}></div>
@@ -125,6 +138,7 @@ const SnipLucky = () => {
           </ul>
         </div>
       </div>
+      {isHistory && <History phone={info.phone} turnOffHistory={turnOffHistory}></History>}
     </Layout>
   );
 };
